@@ -6,7 +6,7 @@ import { Metadata } from "next";
 import { Section } from "@/components/ui/section";
 import { GlobeIcon, MailIcon, PhoneIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { RESUME_DATA } from "@/data/resume-data";
+import { RESUME_DATA } from "@/data/resume-data-en";
 import { ProjectCard } from "@/components/project-card";
 
 export const metadata: Metadata = {
@@ -86,16 +86,15 @@ export default function Page() {
               ) : null}
             </div>
           </div>
-
         </div>
         <Section>
-          <h2 className="text-xl font-bold">Om mig</h2>
+          <h2 className="text-xl font-bold">{RESUME_DATA.headlines.about}</h2>
           <p className="text-pretty font-mono text-sm text-muted-foreground">
             {RESUME_DATA.summary}
           </p>
         </Section>
         <Section>
-          <h2 className="text-xl font-bold">Arbejde</h2>
+          <h2 className="text-xl font-bold">{RESUME_DATA.headlines.work}</h2>
           {RESUME_DATA.work.map((work) => {
             return (
               <Card key={work.company}>
@@ -139,7 +138,20 @@ export default function Page() {
           })}
         </Section>
         <Section>
-          <h2 className="text-xl font-bold">Uddannelse</h2>
+          <h2 className="text-xl font-bold">
+            {RESUME_DATA.headlines.expertice}
+          </h2>
+          <div className="flex flex-wrap gap-1">
+            {RESUME_DATA.skills.map((skill) => {
+              return <Badge key={skill}>{skill}</Badge>;
+            })}
+          </div>
+        </Section>
+        
+        <Section>
+          <h2 className="text-xl font-bold">
+            {RESUME_DATA.headlines.edudcation}
+          </h2>
           {RESUME_DATA.education.map((education) => {
             return (
               <Card key={education.school}>
@@ -157,14 +169,6 @@ export default function Page() {
               </Card>
             );
           })}
-        </Section>
-        <Section>
-          <h2 className="text-xl font-bold">Primær ekspertise</h2>
-          <div className="flex flex-wrap gap-1">
-            {RESUME_DATA.skills.map((skill) => {
-              return <Badge key={skill}>{skill}</Badge>;
-            })}
-          </div>
         </Section>
       </section>
 
